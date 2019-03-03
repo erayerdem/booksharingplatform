@@ -1,4 +1,4 @@
 package book.bookplatform.user.dto;
 
-public class UserLogInRequestModel {
+public class UserLoginRequestModel {
 }
