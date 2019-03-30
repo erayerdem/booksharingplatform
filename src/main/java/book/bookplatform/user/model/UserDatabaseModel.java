@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-
 @Entity
 @Data
 @Table(name = "User")
@@ -39,10 +38,12 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     private boolean isCredentialsNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
+    @ManyToMany(fetch = FetchType.EAGER)
 
+    private  Set<Role> roles;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
