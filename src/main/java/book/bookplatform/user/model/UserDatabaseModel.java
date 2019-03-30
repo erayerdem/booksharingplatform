@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,15 +34,16 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     @CreationTimestamp
     private LocalDateTime localDateTime;
     @OneToMany(mappedBy = "userDatabaseModel")
-    private Set<BookDatabaseModel> bookDatabaseModelSet;
+    private Set<BookDatabaseModel> bookDatabaseModelSet = new HashSet<>();
     private boolean isenabled = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
+    private Set<Role> roles = new HashSet();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override
@@ -72,5 +74,9 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return isenabled;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
     }
 }
