@@ -36,6 +36,11 @@ public class UserController {
         return ResponseEntity.created(null).build();
     }
 
+    @GetMapping
+    public String test() {
+
+        return "spring security succes";
+    }
 
 }
 
