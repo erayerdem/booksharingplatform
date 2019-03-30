@@ -25,7 +25,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity responseEntity(@RequestBody Test test) {
+    public ResponseEntity responseEntity(@RequestBody String test) {
 
         name = test.toString();
         return ResponseEntity.created(null).build();
