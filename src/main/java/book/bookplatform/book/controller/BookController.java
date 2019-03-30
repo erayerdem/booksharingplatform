@@ -1,7 +1,6 @@
 package book.bookplatform.book.controller;
 
 import book.bookplatform.book.model.Book;
-import book.bookplatform.book.repository.BookRepository;
 import book.bookplatform.book.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class BookController {
 
-
+    private static String  name;
     private final BookService bookService;
 
     @PostMapping("books")
@@ -25,5 +24,14 @@ public class BookController {
         return ResponseEntity.created(null).build();
     }
 
+    @PostMapping
+    public ResponseEntity responseEntity(@RequestBody Test test) {
 
+        name = test.toString();
+        return ResponseEntity.created(null).build();
+    }
+    @GetMapping
+    public  String control(){
+        return name;
+    }
 }
