@@ -30,7 +30,7 @@ public class BookController {
         name = test.toString();
         return ResponseEntity.created(null).build();
     }
-    @GetMapping
+    @GetMapping("helegele")
     public  String control(){
         return name;
     }
