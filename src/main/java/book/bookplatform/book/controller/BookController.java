@@ -34,4 +34,8 @@ public class BookController {
     public  String control(){
         return name;
     }
+    @GetMapping("hello")
+    public  String helloworld(){
+        return  "Hello World";
+    }
 }
