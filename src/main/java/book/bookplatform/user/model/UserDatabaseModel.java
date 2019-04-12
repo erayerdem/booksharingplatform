@@ -32,14 +32,13 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     private String encryptedpassword;
     @CreationTimestamp
     private LocalDateTime localDateTime;
-    @OneToMany(mappedBy = "userDatabaseModel")
+    @OneToMany(mappedBy = "userDatabaseModel",fetch = FetchType.EAGER)
     private Set<BookDatabaseModel> bookDatabaseModelSet =new HashSet<>();
     private boolean isenabled = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
     @ManyToMany(fetch = FetchType.EAGER)
-
     private  Set<Role> roles;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -74,6 +73,10 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     @Override
     public boolean isEnabled() {
         return isenabled;
+    }
+
+    public  void setRole(Role role){
+        roles.add(role);
     }
 
 

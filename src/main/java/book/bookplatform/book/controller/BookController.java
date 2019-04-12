@@ -14,8 +14,7 @@ import javax.validation.Valid;
 @AllArgsConstructor
 public class BookController {
 
-    private static String  name;
-    private final BookService bookService;
+
 
     @PostMapping("books")
     public ResponseEntity responseEntity(@Valid @RequestBody Book book) {
@@ -24,18 +23,10 @@ public class BookController {
         return ResponseEntity.created(null).build();
     }
 
-    @PostMapping
-    public ResponseEntity responseEntity(@RequestBody String test) {
-
-        name = test.toString();
-        return ResponseEntity.created(null).build();
-    }
-    @GetMapping("helegele")
-    public  String control(){
-        return name;
-    }
-    @GetMapping("hello")
-    public  String helloworld(){
-        return  "Hello World";
+    public static void main(String[] args) {
+        CharSequence a="21";
+        System.out.println(a.getClass());
+        String A="21".substring(0);
+        System.out.println(A==a);
     }
 }

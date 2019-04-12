@@ -1,6 +1,7 @@
 package book.bookplatform.user.service;
 
 
+import book.bookplatform.user.model.Role;
 import book.bookplatform.user.model.UserDatabaseModel;
 import book.bookplatform.user.model.UserSignUpRequestModel;
 import book.bookplatform.user.repository.UserRepository;
@@ -19,6 +20,7 @@ public class UserService {
         UserDatabaseModel userDatabaseModel = new UserDatabaseModel();
         BeanUtils.copyProperties(userSignUpRequestModel, userDatabaseModel);
         userDatabaseModel.setEncryptedpassword(bcyrptPasswordencoder.encode(userSignUpRequestModel.getPassword()));
+        userDatabaseModel.setRole(Role.USER);
         UserDatabaseModel save = userRepository.save(userDatabaseModel);
     }
 }
