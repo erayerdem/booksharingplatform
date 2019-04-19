@@ -14,12 +14,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+
 @Entity
 @Data
 @Table(name = "User")
 public class UserDatabaseModel implements Serializable, UserDetails {
-
-
     @Id
     @GeneratedValue
     private Long id;
@@ -32,14 +31,15 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     private String encryptedpassword;
     @CreationTimestamp
     private LocalDateTime localDateTime;
-    @OneToMany(mappedBy = "userDatabaseModel",fetch = FetchType.EAGER)
-    private Set<BookDatabaseModel> bookDatabaseModelSet =new HashSet<>();
+    @OneToMany(mappedBy = "userDatabaseModel", fetch = FetchType.EAGER)
+    private Set<BookDatabaseModel> bookDatabaseModelSet = new HashSet<>();
     private boolean isenabled = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
     @ManyToMany(fetch = FetchType.EAGER)
-    private  Set<Role> roles;
+    private Set<Role> roles;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -75,7 +75,7 @@ public class UserDatabaseModel implements Serializable, UserDetails {
         return isenabled;
     }
 
-    public  void setRole(Role role){
+    public void setRole(Role role) {
         roles.add(role);
     }
 

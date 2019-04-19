@@ -16,7 +16,6 @@ public class ErrorHandling {
     @ExceptionHandler({MethodArgumentNotValidException.class})
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException bindingResult, WebRequest request) {
         MyException myException = new MyException(LocalDateTime.now(), HttpStatus.BAD_REQUEST.value(), bindingResult.getBindingResult().getFieldError().getDefaultMessage());
-        System.out.println("invoked");
         return new ResponseEntity(myException, HttpStatus.BAD_REQUEST);
     }
 
