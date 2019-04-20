@@ -4,4 +4,3 @@ spring:
       enabled: true
   jpa:
     open-in-view: false
-

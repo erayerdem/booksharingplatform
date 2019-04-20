@@ -1,12 +1,14 @@
 package book.bookplatform.user.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Role implements GrantedAuthority {
     public static final Role ADMIN = new Role(RoleName.ADMIN);
     public static final Role USER = new Role(RoleName.USER);

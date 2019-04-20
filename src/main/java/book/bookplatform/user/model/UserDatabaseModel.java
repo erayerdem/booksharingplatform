@@ -38,7 +38,7 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     private boolean isAccountNonLocked = true;
     private boolean isAccountNonExpired = true;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

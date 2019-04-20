@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class UserSignUpRequestModel implements Serializable {
 
 
-    @Size(min = 3, max = 35, message = "Lütfen Uygun Bir İsim Giriniz! ")
+    @Size(min = 3, max = 35, message = "Lütfen Uygun Bir İsim Giriniz!")
     @Pattern(regexp = "^(([A-za-z ğüşöçİĞÜŞÖÇ]+[\\s]{1}[A-za-z ğüşöçİĞÜŞÖÇ]+)|([A-Za-z]+))$", message = "Lütfen Uygun Bir İsim Giriniz")
     @NotNull(message = "isim null olamaz")
     private String name;
@@ -32,7 +32,7 @@ public class UserSignUpRequestModel implements Serializable {
     @NotNull(message = "e mail null olamaz")
     private String email;
 
-    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Paralonız en az bir rakam  büyük harf ve özel karakter içermelidir ")
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Paralonız en az bir rakam  büyük harf ve özel karakter içermelidir")
     @NotNull(message = "parala null olamaz")
     private String password;
 

@@ -17,7 +17,6 @@ public class PasswordMatchingValidation implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        System.out.println("hello world");
         UserSignUpRequestModel object = (UserSignUpRequestModel) target;
         if (!object.getPassword().equals(object.getConfirmpassword())) {
             errors.rejectValue("password",null,"Parolalar Aynı Olmalı");

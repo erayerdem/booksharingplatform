@@ -2,7 +2,6 @@ package book.bookplatform.user.controller;
 
 import book.bookplatform.user.customvalidation.EmailValidator;
 import book.bookplatform.user.customvalidation.PasswordMatchingValidation;
-import book.bookplatform.user.model.UserDatabaseModel;
 import book.bookplatform.user.model.UserSignUpRequestModel;
 import book.bookplatform.user.service.UserService;
 import lombok.AllArgsConstructor;
@@ -17,6 +16,9 @@ import javax.validation.Valid;
 @RequestMapping("api")
 @CrossOrigin("*")
 public class UserController {
+
+
+    private final UserService userService;
     private final PasswordMatchingValidation passwordMatchingValidation;
     private final EmailValidator emailValidator;
 
@@ -26,21 +28,14 @@ public class UserController {
 
     }
 
-    private final UserService userService;
 
     @PostMapping("users")
     public ResponseEntity createUser(@RequestBody @Valid UserSignUpRequestModel userSignUpRequestModel) {
 
-        UserDatabaseModel userDatabaseModel = new UserDatabaseModel();
         userService.createUser(userSignUpRequestModel);
         return ResponseEntity.created(null).build();
     }
 
-    @GetMapping
-    public String test() {
-
-        return "spring security succes";
-    }
 
 }
 
