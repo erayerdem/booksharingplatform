@@ -1,10 +1,12 @@
 package book.bookplatform;
 
+import book.bookplatform.user.model.UserDatabaseModel;
 import book.bookplatform.user.model.UserLoginRequestModel;
 import book.bookplatform.user.model.UserSignUpRequestModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,17 +16,30 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.ArrayList;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.util.AssertionErrors.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class User {
+public class UserTests {
+
+
+    UserDatabaseModel userDatabaseModel;
     @Autowired
     private MockMvc mockMvc;
     @Autowired
     ObjectMapper objectMapper;
+
+    @BeforeEach
+    public void createUserDatabaseModel() {
+        userDatabaseModel = new UserDatabaseModel();
+    }
 
     @Test
     @DisplayName("Succes Authanticate Bro")
@@ -37,7 +52,8 @@ public class User {
 
         MvcResult authorization = mockMvc.perform(post("/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(usernameandpasssword)).andExpect(status().is2xxSuccessful())
+                .content(usernameandpasssword))
+                .andExpect(status().is2xxSuccessful())
                 .andExpect(header().exists("Authorization")).andReturn();
 
 
@@ -114,9 +130,10 @@ public class User {
                 .andExpect(jsonPath("message").value("Paralonız en az bir rakam  büyük harf ve özel karakter içermelidir"))
                 .andExpect(jsonPath("statuscode").value(400));
     }
+
     @Test
     @DisplayName("Parolalar eşleşmeli")
-    public  void passwordMatch() throws Exception {
+    public void passwordMatch() throws Exception {
         UserSignUpRequestModel userSignUpRequestModel = new UserSignUpRequestModel();
         userSignUpRequestModel.setSurname("eray");
         userSignUpRequestModel.setName("samet");
@@ -131,5 +148,17 @@ public class User {
                 .andExpect(header().doesNotExist("Authorization"))
                 .andExpect(jsonPath("message").value("Parolalar Aynı Olmalı"))
                 .andExpect(jsonPath("statuscode").value(400));
+
     }
+
+
+
+    @Test
+    @DisplayName("Id check")
+    public void testID() {
+        assertNotNull(userDatabaseModel);
+        assertNotNull(userDatabaseModel.getUserid());
+        assertThat(new ArrayList());
+    }
+
 }

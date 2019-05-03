@@ -1,8 +1,10 @@
 package book.bookplatform.user.controller;
 
+import book.bookplatform.book.repository.BookRepository;
 import book.bookplatform.user.customvalidation.EmailValidator;
 import book.bookplatform.user.customvalidation.PasswordMatchingValidation;
 import book.bookplatform.user.model.UserSignUpRequestModel;
+import book.bookplatform.user.repository.UserRepository;
 import book.bookplatform.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +23,11 @@ public class UserController {
     private final UserService userService;
     private final PasswordMatchingValidation passwordMatchingValidation;
     private final EmailValidator emailValidator;
+    private final UserRepository userRepository;
+    private final BookRepository bookRepository;
 
     @InitBinder
-    protected void databinding(final WebDataBinder webDataBinder) {
+    final protected void databinding(final WebDataBinder webDataBinder) {
         webDataBinder.addValidators(passwordMatchingValidation, emailValidator);
 
     }

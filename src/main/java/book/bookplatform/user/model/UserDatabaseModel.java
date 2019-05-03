@@ -3,6 +3,7 @@ package book.bookplatform.user.model;
 
 import book.bookplatform.book.model.BookDatabaseModel;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,17 +11,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
-@Entity
+@Entity(name = "userdatabasemodel")
 @Data
-@Table(name = "User")
+@Table(name = "Users")
+@ToString
 public class UserDatabaseModel implements Serializable, UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
     private UUID userid = UUID.randomUUID();
@@ -31,8 +30,8 @@ public class UserDatabaseModel implements Serializable, UserDetails {
     private String encryptedpassword;
     @CreationTimestamp
     private LocalDateTime localDateTime;
-    @OneToMany(mappedBy = "userDatabaseModel", fetch = FetchType.EAGER)
-    private Set<BookDatabaseModel> bookDatabaseModelSet = new HashSet<>();
+    @OneToMany(mappedBy = "userDatabaseModel", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private List<BookDatabaseModel> books = new ArrayList<>();
     private boolean isenabled = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isAccountNonLocked = true;

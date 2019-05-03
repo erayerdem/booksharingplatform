@@ -10,7 +10,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Null;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,15 +27,12 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     FilterChain chain) throws IOException, ServletException {
         String header = req.getHeader(HEADER_STRING);
         String requestURI = req.getRequestURI();
-        System.out.println(requestURI);
+
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
 
-            try {
 
-                chain.doFilter(req, res);
-            }catch (NullPointerException e) {
-                e.printStackTrace();
-            }
+            chain.doFilter(req, res);
+
             return;
         }
 
