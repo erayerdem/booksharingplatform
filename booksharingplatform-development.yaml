@@ -1,0 +1,26 @@
+spring:
+  jpa:
+    database: postgresql
+    generate-ddl: true
+    open-in-view: false
+    hibernate:
+      show_sql: true
+      use_sql_comments: true
+      format_sql: true
+      type: trace
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 1
+#book:
+#  SIGN_UP_URL: /api/user
+#  SECRET: secretkey
+#  expirationkey: 432_000_0
+#  tokenprefix: "Bearer "
+#  headerstring: Authorization
+example: tak1

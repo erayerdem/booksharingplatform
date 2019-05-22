@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeRequests().antMatchers("/h2-console/**", "/api/users", "/login").permitAll()
+                .authorizeRequests().antMatchers("/h2-console/**", "/api/users", "/login","/api/books").permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -67,8 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             chain.doFilter(request, res);
         }
 
-        @Override
-        public void destroy() {
-        }
+
     }
 }

@@ -15,6 +15,11 @@ import java.util.List;
 @CrossOrigin("*")
 @AllArgsConstructor
 public class BookController {
+    public static void main(String[] args) {
+
+
+
+    }
 
     private final BookService bookService;
 

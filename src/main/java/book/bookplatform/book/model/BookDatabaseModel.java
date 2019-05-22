@@ -19,7 +19,7 @@ public class BookDatabaseModel {
     private String bookname;
     private String author;
     private Integer page;
-    private String coverphoto;
+    private byte [] coverphoto;
     private String summary;
     @ManyToOne(fetch = FetchType.EAGER)
     private UserDatabaseModel userDatabaseModel;

@@ -30,9 +30,11 @@ public class BookServiceImp implements BookService {
 
     @Transactional
     public void createBook(BookCreatingModel book) {
+
         BookDatabaseModel bookDatabaseModel = new BookDatabaseModel();
         String email = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         BeanUtils.copyProperties(book, bookDatabaseModel);
+        bookDatabaseModel.setCoverphoto(book.getCoverphoto().getBytes());
         Optional<UserDatabaseModel> user = userRepository.findByEmail(email);
         user.ifPresent(userDatabaseModel -> {
 
@@ -40,7 +42,7 @@ public class BookServiceImp implements BookService {
             bookDatabaseModel.setUserDatabaseModel(userDatabaseModel);
 
         });
-        final ArrayList<String> strings = new ArrayList<>();
+
 
     }
 
@@ -53,6 +55,7 @@ public class BookServiceImp implements BookService {
         all.forEach(bookDatabaseModel -> {
             BookRequestModel bookRequestModel = new BookRequestModel();
             BeanUtils.copyProperties(bookDatabaseModel, bookRequestModel);
+            bookRequestModel.setCoverphoto(String.valueOf(new String(bookDatabaseModel.getCoverphoto())));
             bookRequestModels.add(bookRequestModel);
 
         });
