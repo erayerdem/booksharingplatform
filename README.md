@@ -1,6 +1,6 @@
 ### Book sharing platform
 
-#### Bir kitabı okuduktan sonra ihtiyaç sahiplerine o kitabı oluşturmanızı sağlayan platformun.
+#### Bir kitabı okuduktan sonra ihtiyaç sahiplerine o kitabı oluşturmanızı sağlayan platform.
 
 [![shields](https://img.shields.io/badge/made%20with-java-blue?logo=java&style=for-the-badge&logoColor=white)](https://golang.org) ![shields](https://img.shields.io/badge/License-apache-green.svg?logo=read-the-docs&style=for-the-badge&logoColor=white)
 
